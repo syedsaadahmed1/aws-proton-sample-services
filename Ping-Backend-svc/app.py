@@ -15,8 +15,9 @@ def healthcheck():
 @app.route('/', methods=['GET'])
 def inc():
     data = {}
-    backend_response = json.loads(urllib.request.urlopen(BACKEND_URL).read())
-    data['backend_response'] = backend_response['response']
+    # backend_response = json.loads(urllib.request.urlopen(BACKEND_URL).read())
+    # data['backend_response'] = backend_response['response']
+    data = {"Hello from APP1"}
     response = app.response_class(
         response=json.dumps(data),
         status=200,
