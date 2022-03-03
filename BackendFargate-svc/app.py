@@ -1,5 +1,6 @@
 from flask import Flask
 import json
+import time
 
 app = Flask(__name__)
 
@@ -11,7 +12,7 @@ def healthcheck():
 
 @app.route('/', methods=['GET'])
 def inc():
-    data = {"response": "Hello from BackendFargate-svc"}
+    data = {"response": "Hello from BackendFargate-svc. Time: {}".format(time.strftime('%A, %B %d %Y, %H:%M:%S')}
     response = app.response_class(
         response=json.dumps(data),
         status=200,
