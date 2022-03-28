@@ -12,7 +12,7 @@ def healthcheck():
 
 @app.route('/', methods=['GET'])
 def inc():
-    data = {"response": "Hello from Backend-svc. Time: {}".format(time.strftime('%A, %B %d %Y, %H:%M:%S'))}
+    data = {"response": "Hello from backend-svc. Time: {}".format(time.strftime('%A, %B %d %Y, %H:%M:%S'))}
     response = app.response_class(
         response=json.dumps(data),
         status=200,
