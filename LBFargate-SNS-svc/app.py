@@ -10,16 +10,16 @@ def generate_random(char_length):
    return ''.join(random.choice(characters) for i in range(char_length))
 
 TOPIC_ARNS = json.loads(os.getenv("SNS_TOPIC_ARN"))
-# client = boto3.client('sns', region_name = os.getenv("AWS_DEFAULT_REGION"))
+client = boto3.client('sns', region_name = os.getenv("SNS_REGION"))
 app = Flask(__name__)
 
 @app.route('/')
 def hello_world():
-    ping_message = "Hello! Message {} sent at time {},{}".format(generate_random(5),time.strftime('%A, %B %d %Y, %H:%M:%S'),os.getenv("AWS_DEFAULT_REGION"))
-    # response = client.publish(
-    #     TopicArn=TOPIC_ARNS["ping"],
-    #     Message=ping_message
-    #         )
+    ping_message = "Hello! Message {} sent at time {}".format(generate_random(5),time.strftime('%A, %B %d %Y, %H:%M:%S'))
+    response = client.publish(
+        TopicArn=TOPIC_ARNS["ping"],
+        Message=ping_message
+            )
     message = jsonify(message=ping_message)
     return make_response(message, 200)
 
