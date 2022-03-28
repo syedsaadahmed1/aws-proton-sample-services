@@ -10,7 +10,7 @@ def generate_random(char_length):
    return ''.join(random.choice(characters) for i in range(char_length))
 
 TOPIC_ARNS = json.loads(os.getenv("SNS_TOPIC_ARN"))
-client = boto3.client('sns')
+client = boto3.client('sns', region_name = os.getenv("AWS_DEFAULT_REGION"))
 app = Flask(__name__)
 
 @app.route('/')
