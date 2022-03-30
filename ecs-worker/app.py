@@ -9,7 +9,7 @@ logger = logging.getLogger()
 logging.basicConfig(level=logging.INFO,
                     format='%(asctime)s: %(levelname)s: %(message)s')
 
-sqs_client = boto3.client("sqs")
+sqs_client = boto3.client("sqs", region_name = os.getenv("QUEUE_REGION"))
 
 
 def receive_queue_message():
