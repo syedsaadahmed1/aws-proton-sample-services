@@ -22,8 +22,6 @@ exports.handler = async (event, context) => {
     // Create event object to return to caller
     const eventObj = {
       functionName: context.functionName,
-      method: event.requestContext.http.method,
-      Path: event.rawPath,
       SNS_Message: `Message ${sns_message} sent at ${date}`,
       SNS_Subject: 'New message from publisher',
     };
@@ -31,7 +29,7 @@ exports.handler = async (event, context) => {
     // Params object for SNS
     const params = {
       Message: `Message ${sns_message} sent at ${date}`,
-      Subject: 'New message from lambda',
+      Subject: 'New message from publisher',
       TopicArn: process.env.SNStopic
     };
     
