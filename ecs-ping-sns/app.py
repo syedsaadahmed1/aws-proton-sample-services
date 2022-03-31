@@ -1,32 +1,29 @@
-from flask import Flask, request, jsonify, make_response
-import boto3
+import logging
 import os
 import json
 import random, string
 import time
+import boto3
+
+TOPIC_ARNS = json.loads(os.getenv("SNS_TOPIC_ARN"))
+client = boto3.client('sns', region_name = os.getenv("SNS_REGION"))
+logger = logging.getLogger()
+logging.basicConfig(level=logging.INFO,
+                    format='%(asctime)s: %(levelname)s: %(message)s')
 
 def generate_random(char_length):
    characters = string.ascii_lowercase
    return ''.join(random.choice(characters) for i in range(char_length))
 
-TOPIC_ARNS = json.loads(os.getenv("SNS_TOPIC_ARN"))
-client = boto3.client('sns', region_name = os.getenv("SNS_REGION"))
-app = Flask(__name__)
-
-@app.route('/')
-def hello_world():
+def send_message():
     ping_message = "Hello! Message {} sent at time {}".format(generate_random(5),time.strftime('%A, %B %d %Y, %H:%M:%S'))
     response = client.publish(
-        TopicArn=TOPIC_ARNS["ping"],
+        TopicArn=TOPIC_ARNS,
         Message=ping_message
             )
-    message = jsonify(message=ping_message)
-    return make_response(message, 200)
-
-@app.route('/ping')
-def pong():
-    message = jsonify(message="Pong")
-    return make_response(message, 200)
+    message_id = response['MessageId']
+    logger.info("Published message: %s.", message_id)
+    return message_id
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=80)
+    send_message()
