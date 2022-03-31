@@ -18,7 +18,7 @@ def generate_random(char_length):
 def send_message():
     ping_message = "Hello! Message {} sent at time {}".format(generate_random(5),time.strftime('%A, %B %d %Y, %H:%M:%S'))
     response = client.publish(
-        TopicArn=TOPIC_ARNS,
+        TopicArn=TOPIC_ARNS["ping"],
         Message=ping_message
             )
     message_id = response['MessageId']
