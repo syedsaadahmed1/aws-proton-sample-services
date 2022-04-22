@@ -30,7 +30,7 @@ exports.handler = async (event, context) => {
     const params = {
       Message: `Message ${sns_message} sent at ${date}`,
       Subject: 'New message from publisher',
-      TopicArn: process.env.SNStopic
+      TopicArn: process.env.SNSTopicArn
     };
     
     // Send to SNS
