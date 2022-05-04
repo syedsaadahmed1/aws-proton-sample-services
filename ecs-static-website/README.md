@@ -1,3 +1,3 @@
-## Expected output
+# Expected output
 
 ![image](./image.png)
