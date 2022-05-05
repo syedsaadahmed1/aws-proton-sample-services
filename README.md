@@ -1,6 +1,8 @@
 # AWS Proton Sample Services
 
-This repository contains samples of application code that can be deployed with AWS Proton using the [AWS Proton Sample Services](https://github.com/aws-samples/aws-proton-sample-templates/tree/main/service-templates). 
+This repository contains samples of application code that can be deployed with AWS Proton using the for both [AWS CloudFormation](https://github.com/aws-samples/aws-proton-sample-templates) and [Terraform](https://github.com/aws-samples/aws-proton-terraform-sample-templates). 
+
+To use these services, fork this repository and provide your forked repository as an input when you create a service. The AWS Proton sample templates include a pipeline parameter (service-dir) that allows you to select a directory within the repository, so that you can choose the right service for your particular template type.
 
 - ## ecs-backend
 
