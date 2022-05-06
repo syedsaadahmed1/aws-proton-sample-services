@@ -1,4 +1,4 @@
-# Expected output
+# Data sent to SNS topic
 
 {
   "functionName": "apigw-lambda-svc-prod-function",
