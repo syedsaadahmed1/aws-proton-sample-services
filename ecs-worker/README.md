@@ -1,4 +1,4 @@
-# Expected output
+# Expected message in CloudWatch Logs
 
 INFO: The message body: {
   "Type" : "Notification",
